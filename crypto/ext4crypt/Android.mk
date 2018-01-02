@@ -35,6 +35,10 @@ else
 endif
 else
     LOCAL_SRC_FILES += Keymaster.cpp KeyStorage.cpp
+    ifneq ($(wildcard system/core/libkeyutils/Android.bp),)
+        LOCAL_CFLAGS += -DHAVE_LIBKEYUTILS
+        LOCAL_SHARED_LIBRARIES += libkeyutils
+    endif
 endif # TW_CRYPTO_USE_KEYMASTER_V1
 
 include $(BUILD_SHARED_LIBRARY)
